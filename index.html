@@ -13,9 +13,6 @@
     <table>
         <thead>
             <tr>
-                <th>
-                    Task
-                </th>
             </tr>
             
         </thead>
@@ -28,25 +25,25 @@
 
 
 function addNewTask(){
-    //1. Grab input value (as string)
-    let input = document.querySelector('#new-task');
-    let newTask = input.value;
-    //2. Create new row with value
-    let newRow = document.createElement('tr');
-    let cell = document.createElement('td');
-    newRow.appendChild(cell)
+    let newTask = getTaskName();
+    let newRow = createNewTaskRow();
 
-    // console.log(newTask)
     //3. Add new row to table
+    let tableBody = document.querySelector('tbody'); //get table element from DOM
+    tableBody.appendChild(newRow); // add the new row to the table
+}
 
-//cheated from this point on
-     cell.textContent = newTask; 
-     // Assign the value to the cell
+function getTaskName(){
+    let input = document.querySelector('#new-task');  //get input (text field) element
+    return input.value;  //get text entered into input
+}
+
+function createNewTaskRow(newTask){
+    let newRow = document.createElement('tr');  //create new table row
+    let cell = document.createElement('td'); //create table cell
+    cell.textContent = newTask;
     newRow.appendChild(cell);
-  //3. Add new row to table
-    let tableBody = document.querySelector('tbody');
-    tableBody.appendChild(newRow);
-    
+    return newRow;
 }
 
 </script>
