@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Task Manager</title>
+</head>
+<body>
+    <input id="new-task" placeholder="enter task..." type="text"/>
+    <button id="add-task" onclick="addNewTask();">Add</button> 
+    
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Task
+                </th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+<script>
+
+
+
+function addNewTask(){
+    //1. Grab input value (as string)
+    let input = document.querySelector('#new-task');
+    let newTask = input.value;
+    //2. Create new row with value
+    let newRow = document.createElement('tr');
+    let cell = document.createElement('td');
+    newRow.appendChild(cell)
+
+    // console.log(newTask)
+    //3. Add new row to table
+
+//cheated from this point on
+     cell.textContent = newTask; 
+     // Assign the value to the cell
+    newRow.appendChild(cell);
+  //3. Add new row to table
+    let tableBody = document.querySelector('tbody');
+    tableBody.appendChild(newRow);
+    
+}
+
+</script>
+</body>
+</html>
