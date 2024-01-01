@@ -12,7 +12,7 @@
   </head>
   <body>
     <input id="new-task" placeholder="enter task..." type="text" />
-    <button id="add-task" onclick="addNewTask();">Add</button>
+    <button id="add-task" onclick="addTask();">Add</button>
 
     <table class="table table-success table-striped-columns">
       <thead>
@@ -21,20 +21,20 @@
       <tbody></tbody>
     </table>
     <script>
+function addTask(){
+    let input = document.getElementById("new-task");
+    let inputValue = input.value;
 
-//get input element
-let newTaskOne = document.querySelector('#new-task');
+    let newTd = document.createElement("td");
+    newTd.innerText = inputValue;
 
-
-let newTaskTwo = newTaskOne.value;
-
-let newTd = document.createElement("td");
-
-newTd.innerText = newTaskOne;
-
-
-let newTr = document.createElement("tr");
-newTr.appendChild(newTd);
+    let newTr = document.createElement("tr");
+    newTr.appendChild(newTd);
+    
+    let tbody = document.querySelector("tbody");
+    tbody.appendChild(newTr);
+}
+    
 // let 
 
 
