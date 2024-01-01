@@ -1,51 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <title>Task Manager</title>
-</head>
-<body>
-    <input id="new-task" placeholder="enter task..." type="text"/>
-    <button id="add-task" onclick="addNewTask();">Add</button> 
-    
-    <table>
-        <thead>
-            <tr>
-            </tr>
-            
-        </thead>
-        <tbody>
-            
-        </tbody>
+  </head>
+  <body>
+    <input id="new-task" placeholder="enter task..." type="text" />
+    <button id="add-task" onclick="addNewTask();">Add</button>
+
+    <table class="table table-success table-striped-columns">
+      <thead>
+        <tr></tr>
+      </thead>
+      <tbody></tbody>
     </table>
-<script>
+    <script>
+
+//get input element
+let newTaskOne = document.querySelector('#new-task');
+
+
+let newTaskTwo = newTaskOne.value;
+
+let newTd = document.createElement("td");
+
+newTd.innerText = newTaskOne;
+
+
+let newTr = document.createElement("tr");
+newTr.appendChild(newTd);
+// let 
 
 
 
-function addNewTask(){
-    let newTask = getTaskName();
-    let newRow = createNewTaskRow();
 
-    //3. Add new row to table
-    let tableBody = document.querySelector('tbody'); //get table element from DOM
-    tableBody.appendChild(newRow); // add the new row to the table
-}
 
-function getTaskName(){
-    let input = document.querySelector('#new-task');  //get input (text field) element
-    return input.value;  //get text entered into input
-}
 
-function createNewTaskRow(newTask){
-    let newRow = document.createElement('tr');  //create new table row
-    let cell = document.createElement('td'); //create table cell
-    cell.textContent = newTask;
-    newRow.appendChild(cell);
-    return newRow;
-}
 
-</script>
-</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // buyDrink("Water");
+
+      // function buyDrink(drinkName = "Water"){
+      //     console.log(`please get me a bottle of ${drinkName}!`)
+      // }
+
+      // function addNewTask() {
+      //   let newTask = getTaskName();
+      //   //let newTaskRow = createNewTaskRow(newTask);
+      //   createNewTaskRow(newTask);
+      //   localStorage.setItem('newRow',newTaskRow);
+      //   //3. Add new row to table
+      //   let tableBody = document.querySelector("tbody"); //get table element from DOM
+      //   tableBody.appendChild(newTaskRow); // add the new row to the table
+      // }
+
+      // let getTaskName = function () {
+      //   let input = document.querySelector("#new-task"); //get input (text field) element
+      //   return input.value; //get text entered into input
+      // };
+
+      // function createNewTaskRow(taskName) {
+      //   let newRow = document.createElement("tr"); //create new table row
+      //   let cell = document.createElement("td"); //create table cell
+      //   cell.textContent = taskName;  //add task name as text to the cell
+      //   newRow.appendChild(cell); // add td to tr
+      //   return newRow;
+      // }
+
+
+
+
+
+    </script>
+  </body>
 </html>
