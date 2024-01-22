@@ -1,0 +1,45 @@
+<label for="text"></label>
+<input type="text" id="text"/>
+
+<input type="number" id="num" placeholder="enter age">
+<button type="button" id="numbtn" onclick="requestAge()" value="submit">submit age</button>
+
+<script> 
+/*    let textInput = document.querySelector('#text')
+   let textValue= textInput.value;
+// if number
+
+    let intVal = parseInt(textValue);
+    //if is number
+   if(!isNan(intVal)){
+     // do comparison
+     console.log('test')
+   }else{
+
+    console.log('next time type in a numberor i will kill you!')
+   }
+    */
+
+
+function requestAge(){
+    let numInput = document.querySelector('#num')
+    let numValue = numInput.value
+
+    if(numValue >= 99){
+        console.log('your to old to visit this site')
+        window.location.href = 'https://www.bing.com/search?pglt=41&q=above+99yo+is+old&cvid=9367b05538104580b1beb0f30bbbcb1e&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQABhAMgYIAhAAGEDSAQkxMTU3MGowajGoAgCwAgA&FORM=ANNTA1&PC=SCOOBE';
+
+    }
+    else if(numValue >= 18){
+        console.log('your old enough to visit this site');
+        
+    } 
+    else{
+        console.log('your to young to view this site');
+    }
+}
+
+function converparseint{
+
+}
+</script>
