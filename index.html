@@ -25,15 +25,23 @@
  
  let api = taskApi;
 
+   class MyAudio{
+      playit = function(){
+
+      }
+   }
+
+   let obj = {}
 
 function addNewTask(){
+  taskApi.eat();
     console.log(getNewTaskName()>2)
   
     let tbody = document.querySelector("tbody");
     let newTr = getNewTr();
     tbody.appendChild(newTr);
     let gh = {name:'gh'}
-    taskApi.save(gh);
+    // taskApi.save(gh);
 }
 
 function save(){
