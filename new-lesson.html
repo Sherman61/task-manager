@@ -11,20 +11,69 @@
         class Person{
             
             // all objects created basaed on this class, meaning new Person, should have key name
-            constructor(nameArg, agearg){
+            constructor(nameArg, ageArg){
                 this.name = nameArg
-                this.age = agearg
-                this.id =function(){
-                    math
-                }
+                this.age = ageArg
+                this.id = this.createUniqueID();
             }
 
-            
+            greet(name){
+               console.log("Good Morning, " + name + "! My name is " + this.name + "!"); 
+            }
+
+            createUniqueID(){
+                return Math.random().toString(36).substr(2, 9);
+            }
         }
+
+        class Employee extends Person{
+            constructor(nameArg, ageArg, rateArg){
+                super(nameArg, ageArg);
+                this.rate = rateArg;
+            }
+        }
+
+        class Boss extends Employee{
+            constructor(nameArg, ageArg, rateArg,parkingNumArg){
+                super(nameArg, ageArg, rateArg)
+                this.parkingNum = parkingNumArg
+            }
+
+            greet(name){
+               console.log("You're late!"); 
+            }
+        }
+
+        const niceBoss = new Boss("Yankel",65,175,1);
+
+        let shiya = new Employee('shiya', 17, 25)//{name:'shiya', age:17}
+        let motty = {name:'motty', age:41}
+        let avrumy = {name:'avrumy', age:30}
+
+        console.log(shiya);
+        
+        class Car{
+            constructor(makeArg, yearArg){
+                this.make = makeArg;
+                this.year = yearArg
+            }
+
+            // getMake(){
+            //     return this.make;
+            // }
+        }
+
+
+
+
+
+        let honda = new Car("Honda");  // honda = {make:"Honda", year:undefined}
+
+        console.log(); 
 
         // let guy = new Person(); 
 
-let p1 = new Person('shiya', 19)
+let p1 = new Person(19)
 let p2 = new Person('motty', 41)
 let p3 = new Person('nobody')
 
