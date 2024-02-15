@@ -1,0 +1,16 @@
+let bla ={
+    "tasks":[
+        {"id":1,"name":"bananas"},
+        {"id":2,"name":"tictoctoe"}
+    ]
+}
+
+bla.tasks[0].id
+
+
+let blas ="{
+    "tasks":[
+        {"id":1,"name":"bananas"},
+        {"id":2,"name":"tictoctoe"}
+    ]
+}"

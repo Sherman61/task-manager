@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding:0;
+        }
+        html{
+            height:100vh;
+            
+        }
+        body{
+            height:100%;
+        }
+
+        #container{
+            height:100%;
+            display:flex;
+            flex-wrap: wrap;
+            gap:35px;
+            /* margin:5px; */
+        }
+
+        .card{
+            min-width: fit-content;
+            height:200px;
+            width: 100px;
+            border-radius: 5px;
+            border-width: 3px;
+            border-color:darkblue;
+            border-style: solid;
+            background-color: aquamarine;
+            font-size: 2em;
+            text-align: center;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="card"><button>Press Me</button></div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+</body>
+</html>

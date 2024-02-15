@@ -1,4 +1,4 @@
-/* let taskApi = (function () {
+ let taskApi = (function () {
   let save = function (task) {
     console.log(`saving task ${task.name}`);
     let taskArray = JSON.parse(localStorage.getItem('tasks'));
@@ -13,7 +13,9 @@
   };
 
   function getTasksFromLocalStorage(){
-
+     obj1.key1
+     "suitcase"
+      return JSON.parse(localStorage.getItem('tasks'));
   }
 
   let del = function (task) {
@@ -35,9 +37,9 @@
     getTaskById: getTaskById,
   };
 })();
- */
+ 
 
-let taskApi = (function () {
+/* let taskApi = (function () {
   let greet = function (name) {
     console.log(`hello ${name}`);
   };
@@ -53,5 +55,5 @@ let taskApi = (function () {
     eat: eat,
   };
 })();
-taskApi.greet("shiya");
+taskApi.greet("shiya"); */
 // taskApi.eat();
