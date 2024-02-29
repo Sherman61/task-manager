@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display grid</title>
+</head>
+<body>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding:0;
+        }
+        html{
+            height:100vh;
+        }
+        body{
+            height:100%;
+        }
+        #container{
+            height:100%;
+            display:grid;
+             /* grid-template-columns: repeat(3, 1fr); */
+            grid-template-rows: 80px 1fr 150px;
+            /* gap:35px;  */
+            /* margin:5px; */
+            text-align: center;
+            font-size: 1.5em;
+        }
+ .card{
+            min-width: fit-content;
+            height:200px;
+            width: 100px;
+            border-radius: 5px;
+            border-width: 3px;
+            border-color:darkblue;
+            border-style: solid;
+            background-color: aquamarine;
+            font-size: 2em;
+            text-align: center;
+            padding: 5px;
+        }
+       .brd{
+            border-radius: 5px;
+            border-width: 3px;
+            border-color:darkblue;
+            border-style: solid;
+            /* padding: 2px; */
+        }
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* grid-column: 1 / 4;
+            grid-row: 1 / 2;
+            background-color: lightblue; */
+        }
+        .main{
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            /* grid-column: 1 / 3;
+            grid-row: 2 / 4;
+            background-color: lightgreen; */
+        }
+        .side-bar{
+display: flex;
+flex-direction: column;
+gap: 10px;
+padding:10px;
+            /* grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            background-color: lightcoral; */
+        }
+        .footer{
+            /* grid-column: 3 / 4;
+            grid-row: 3 / 4;
+            background-color: lightcoral; */
+        }
+    </style>
+    <div id="container">
+    <div class="header brd">this is a header</div>
+    <div class="main brd">
+        <div class="side-bar brd">
+            <a href="#about">about</a> 
+            <a href="#contact">contact</a>
+            <a href="#services">services</a>
+            <a href="#portfolio">portfolio</a>
+        </div>
+        <div class="content brd">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+        </div>
+    </div>
+
+    <div class="footer brd">this is the footer</div>
+    </div>
+</body>
+</html>
