@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>grid calculator</title>
     <script src="https://kit.fontawesome.com/5b728db556.js" crossorigin="anonymous"></script>
-    <style>
+   <!-- <link rel="font-family" href="DIGITAL-7.TTF"> -->
+   <style>
+    @font-face {
+        font-family: 'DIGITAL-7';
+        src: url('DIGITAL-7.TTF');
+    }
             *{
                 box-sizing: border-box;
+                
             }
 
         body{
@@ -18,6 +24,7 @@
            justify-content: center;
             align-items: center;
             background-color: rgb(255, 255, 255);
+
 
         }
 
@@ -44,6 +51,8 @@
             /* <inset?> x y blur spread */
             box-shadow: inset 2px 2px 0px 0px rgb(227, 225, 225);
             background-color: rgba(255, 255, 255, 0.863);
+            
+           
         }
         
         .screen-row{
@@ -59,6 +68,10 @@
             text-align: right;
             /* border: 3px solid black; */
             /* border-radius: 10px 10px 0 0; */
+            padding-top: 8px;
+            padding-right: 10px;
+             font-family: 'DIGITAL-7', sans-serif;
+            
         }
 
         #lower-row{
@@ -66,8 +79,11 @@
             border:none;
             width: 100%;
             /* height: 70px; */
-            font-size: 20px;
+            font-size: 2.5em;
             text-align: right;
+            padding-right: 10px;
+             font-family: 'DIGITAL-7', sans-serif;
+           
         }
 
         .btn{
@@ -77,26 +93,34 @@
             font-weight: bold;
             box-shadow: 2px 2px 0 0px lightgray;
             border-radius: 5px;
-            border:none
+            border:none;
+            cursor: pointer;
         }
+.btn:hover{
+    background-color: rgb(243, 243, 243); 
+    }
+    .btn:active{
+        background-color: rgb(199, 199, 199);
+  box-shadow: 2px 2px 0 0px rgb(105, 105, 105);
+    }
         </style>
 </head>
 <body>
     
     <div class="calculator">
         <div class="screen">
-            <input type="text" class='screen-row' name="" id="upper-row">
-            <input type="text" class='screen-row' name="" id="lower-row">
+            <input type="text" disabled class='screen-row' name="" id="upper-row">
+            <input type="text" disabled class='screen-row' name="" id="lower-row">
         </div>
 
         <button class="btn num5"><i class="fa-solid fa-delete-left"></i></button>
         <button class="btn num6">CE</button>
         <button class="btn num8">C</button>
-        <button class="btn num7">/</button>
+        <button class="btn num7">&div;</button>
         <button class="btn num1">1</button>
         <button class="btn num2">2</button>
         <button class="btn num3">3</button>
-        <button class="btn divide">X</button>
+        <button class="btn divide">x</button>
         <button class="btn num4">4</button>
         <button class="btn num5">5</button>
         <button class="btn num6">6</button>
@@ -110,5 +134,76 @@
         <button class="btn plus">.</button>
         <button class="btn plus">=</button>
     </div>
+    <script>
+        class Animal{
+            static count = 0;
+
+            constructor(name,species){
+                this.name = name;
+                this.species = species;
+                Animal.count++;  //coiunt += 1, count = count + 
+            }
+
+            speak(){
+                console.log(`My name is ${this.name} and I am a ${this.species}`);
+            }
+
+            static getCount(){
+                return Animal.count;
+            }
+        }
+
+        let cat = new Animal('Tom','Cat');
+        let dog = new Animal('Spike','Dog');
+
+
+        class List{
+            // constructor(){
+            //     this.list = [];
+            // }
+            // addToList(value){
+            //     this.list.push(value);
+            // }
+            // removeFromList(){
+            //     this.list.pop();
+            // }
+            // clearList(){
+            //     this.list = [];
+            // }
+            // getList(){
+            //     return this.list;
+            // }
+        }
+
+        console.log("hj");
+
+
+      let buttons = document.querySelectorAll('.btn');
+      buttons.forEach((btn)=>{
+          btn.addEventListener('click',()=>{
+              let upperRow = document.getElementById('upper-row');
+              let lowerRow = document.getElementById('lower-row');
+              let value = btn.textContent;
+              if(value === 'C'){
+                  upperRow.value = '';
+                  lowerRow.value = '';
+              }else if(value === 'CE'){
+                  lowerRow.value = '';
+              }else if(value === 'x'){
+                  lowerRow.value += '*'; // lowerRow.value = lowerRow.value + '*'
+              }else if(value === '='){
+                  upperRow.value = lowerRow.value;
+                  let finalString = lowerRow.value.replace('÷','/');
+                  lowerRow.value = eval(finalString);
+              }else if(value === '÷'){
+                  lowerRow.value  += '÷'
+              }else if(!value){
+                  lowerRow.value = lowerRow.value.slice(0,-1);
+              }else{
+                  lowerRow.value += value;
+              }
+          });
+      });
+    </script>
 </body>
 </html>
