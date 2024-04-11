@@ -176,44 +176,73 @@
       let lastEntry = "5656";
 
       function isOp(character) {
-        if (
-          character === "+" ||
-          character === "-" ||
-          character === "x" ||
-          character === "÷"
-        ) {
-          return true;
-        }
-      }
+  if (
+    character === "+" ||
+    character === "-" ||
+    character === "x" ||
+    character === "÷"
+  ) {
+    return true;
+  }
+  return false;
+}
+
 
       //const entries = [];
 
       buttons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const entry = btn.textContent;
-          if (isOp(entry)) {
-            if (isOp(lastEntry)) {
+       
+  //   if upperrow has a op and last entry was a number and this entrty is a op then calc
+
+  let lastOp = upperRow.value.slice(-1);
+ if( isOp(lastOp) && isOp(entry) && !isOp(lastEntry)){
+  
+            //  alert("upper row has a op and last entry was a number and this entrty is a op");
+       
+          upperRow.value += lowerRow.value ;
+          
+          upperRow.value = upperRow.value.replace(/x/g, '*');
+          upperRow.value = upperRow.value.replace(/÷/g, '/');
+            lowerRow.value = eval(upperRow.value);
+            upperRow.value = lowerRow.value + entry
+          //  upperRow.value = lowerRow.value + entry;
+        }
+
+          if (isOp(entry)) {//if entry is a op 
+            if (isOp(lastEntry)) { // if entry is a op and last entry is a op
               let lastOp = upperRow.value.slice(-1);
               upperRow.value = upperRow.value.replace(lastOp, entry);
-            } else {
-              upperRow.value = lowerRow.value + entry;
-            }
+            }  else { 
+              
+if( !isOp(lastOp)  ) {
+              // entry is a op and last entry was a number and lastop was not a op
+              upperRow.value += lowerRow.value + entry;
+              
+            //   lowerRow.value.replace(entry,'9')
+            }}
           } else {
             // if entry is not and op and last entry is a op then ...
             if (isOp(lastEntry)) {
               lowerRow.value = entry;
-            } else {
-              //
-              // alert('last entry and entry was a number')
+            } else { // last entry and entry was a number
+             
+             
               //   if (!upperRow.value) {
               if (lowerRow.value === "0") {
                 lowerRow.value = entry;
-              } else {
+              } else { 
                 lowerRow.value += entry;
               }
               //   }
             }
+
+           
           }
+
+
+ 
 
           if (entry === "C") {
             clearScreen();
@@ -221,10 +250,26 @@
             lowerRow.value = "0";
           }
 
-          //     //   else if(entry === 'x'){
-          //     //       lowerRow.value += '*'; // lowerRow.value = lowerRow.value + '*'
-          //     //   }else if(entry === '='){
-          //     //       upperRow.value = lowerRow.value;
+       
+        
+                //  else if(entry === 'x'){
+                //     upperRow.value += '*'; // lowerRow.value = lowerRow.value + '*'
+                //  }
+
+
+            // }
+            else if(entry === '='){
+              lowerRow.value = lowerRow.value.replace(entry, '');
+              // upperRow.value = upperRow.value.replace(lastOp, '');
+              upperRow.value += lowerRow.value; 
+                       lowerRow.value = eval(upperRow.value)
+                       upperRow.value += "=";
+                      //  upperRow.value += lowerRow.value + entry;
+                    }
+              //       else if(lastEntry === '='){
+              // upperRow.value = '';
+             
+              //       }
           //  const finalString = lowerRow.value.replace('÷','/');
           //     //       lowerRow.value = eval(finalString);
           //     //   }else if(entry === '÷'){
