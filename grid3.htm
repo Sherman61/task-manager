@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>grid calculator</title>
+    <meta
+      name="description"
+      content="Experience precision and ease with our online calculator, designed to mimic the familiar functionality of a desktop calculator. Ideal for students, professionals, and everyday use, our tool offers all the standard operations including addition, subtraction, multiplication, and division, plus advanced features like percentages and square roots. Start calculating today for quick, accurate results!"
+    />
     <script
       src="https://kit.fontawesome.com/5b728db556.js"
       crossorigin="anonymous"
@@ -108,7 +112,9 @@
         <input type="text" disabled class="screen-row" name="" id="lower-row" />
       </div>
 
-      <button class="btn num5"><i class="fa-solid fa-delete-left"></i></button>
+      <button class="btn num5" id="backBtn" data-hidden-value="backBtn">
+        <i class="fa-solid fa-delete-left"></i>
+      </button>
       <button class="btn num6">CE</button>
       <button class="btn num8">C</button>
       <button class="btn num7 op">&div;</button>
@@ -130,169 +136,198 @@
       <button class="btn plus">=</button>
     </div>
     <script>
-      class Animal {
-        static count = 0;
-
-        constructor(name, species) {
-          this.name = name;
-          this.species = species;
-          Animal.count++; //coiunt += 1, count = count +
-        }
-
-        speak() {
-          console.log(`My name is ${this.name} and I am a ${this.species}`);
-        }
-
-        static getCount() {
-          return Animal.count;
-        }
-      }
-
-      let cat = new Animal("Tom", "Cat");
-      let dog = new Animal("Spike", "Dog");
-
-      class List {
-        // constructor(){
-        //     this.list = [];
-        // }
-        // addToList(value){
-        //     this.list.push(value);
-        // }
-        // removeFromList(){
-        //     this.list.pop();
-        // }
-        // clearList(){
-        //     this.list = [];
-        // }
-        // getList(){
-        //     return this.list;
-        // }
-      }
-
       const buttons = document.querySelectorAll(".btn");
       const upperRow = document.getElementById("upper-row");
       const lowerRow = document.getElementById("lower-row");
+      const backBtn = document.getElementById("backBtn");
+      let lastEntry = "0";
+      let entry = "";
+      let lastUpperChar = "";
+
+      upperRow.value = "";
       lowerRow.value = "0";
-      let lastEntry = "5656";
 
-      function isOp(character) {
-  if (
-    character === "+" ||
-    character === "-" ||
-    character === "x" ||
-    character === "÷"
-  ) {
-    return true;
-  }
-  return false;
-}
+      const isOp = (character) =>
+        ["+", "-", "x", "\u00F7", "&divide;", "÷", "%"].includes(character);
 
+      const isNumeric = (character) =>
+        ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."].includes(
+          character
+        );
 
-      //const entries = [];
-
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const entry = btn.textContent;
-       
-  //   if upperrow has a op and last entry was a number and this entrty is a op then calc
-
-  let lastOp = upperRow.value.slice(-1);
- if( isOp(lastOp) && isOp(entry) && !isOp(lastEntry)){
-  
-            //  alert("upper row has a op and last entry was a number and this entrty is a op");
-       
-          upperRow.value += lowerRow.value ;
-          
-          upperRow.value = upperRow.value.replace(/x/g, '*');
-          upperRow.value = upperRow.value.replace(/÷/g, '/');
-            lowerRow.value = eval(upperRow.value);
-            upperRow.value = lowerRow.value + entry
-          //  upperRow.value = lowerRow.value + entry;
-        }
-
-          if (isOp(entry)) {//if entry is a op 
-            if (isOp(lastEntry)) { // if entry is a op and last entry is a op
-              let lastOp = upperRow.value.slice(-1);
-              upperRow.value = upperRow.value.replace(lastOp, entry);
-            }  else { 
-              
-if( !isOp(lastOp)  ) {
-              // entry is a op and last entry was a number and lastop was not a op
-              upperRow.value += lowerRow.value + entry;
-              
-            //   lowerRow.value.replace(entry,'9')
-            }}
-          } else {
-            // if entry is not and op and last entry is a op then ...
-            if (isOp(lastEntry)) {
-              lowerRow.value = entry;
-            } else { // last entry and entry was a number
-             
-             
-              //   if (!upperRow.value) {
-              if (lowerRow.value === "0") {
-                lowerRow.value = entry;
-              } else { 
-                lowerRow.value += entry;
-              }
-              //   }
-            }
-
-           
-          }
-
-
- 
-
-          if (entry === "C") {
-            clearScreen();
-          } else if (entry === "CE") {
-            lowerRow.value = "0";
-          }
-
-       
-        
-                //  else if(entry === 'x'){
-                //     upperRow.value += '*'; // lowerRow.value = lowerRow.value + '*'
-                //  }
-
-
-            // }
-            else if(entry === '='){
-              lowerRow.value = lowerRow.value.replace(entry, '');
-              // upperRow.value = upperRow.value.replace(lastOp, '');
-              upperRow.value += lowerRow.value; 
-                       lowerRow.value = eval(upperRow.value)
-                       upperRow.value += "=";
-                      //  upperRow.value += lowerRow.value + entry;
-                    }
-              //       else if(lastEntry === '='){
-              // upperRow.value = '';
-             
-              //       }
-          //  const finalString = lowerRow.value.replace('÷','/');
-          //     //       lowerRow.value = eval(finalString);
-          //     //   }else if(entry === '÷'){
-          //     //       lowerRow.value  += '÷'
-          //     //   }else if(entry === '+'){
-          //     //       //lowerRow.value  += '÷'
-          //     //   }else if(entry === '-'){
-          //     //       //lowerRow.value  += '÷'
-          //     //   }else if(!entry){
-          //     //       lowerRow.value = lowerRow.value.slice(0,-1);
-          //     //   }
-          else {
-            // number was pressed
-          }
-
-          lastEntry = entry;
-        });
-      });
+      const isNumOrOp = (character) => isOp(character) || isNumeric(character);
 
       function clearScreen() {
         upperRow.value = "";
         lowerRow.value = "0";
       }
+
+      function replaceFromNonEval() {
+        if (upperRow.value.includes("x") || upperRow.value.includes("÷")) {
+          upperRow.value = upperRow.value.replace(/x/g, "*");
+          upperRow.value = upperRow.value.replace(/÷/g, "/");
+        }
+      }
+
+      function replaceToNonEval() {
+        if (upperRow.value.includes("*") || upperRow.value.includes("/")) {
+          upperRow.value = upperRow.value.replace(/\*/g, "x");
+          upperRow.value = upperRow.value.replace(/\//g, "÷");
+        }
+      }
+
+      function getLastUpperRowOpIndex() {
+        let lastUpperRowOpIndex = -1;
+
+        for (let i = upperRow.value.length - 1; i >= 0; i--) {
+          if (isOp(upperRow.value[i])) {
+            lastUpperRowOpIndex = i;
+            break;
+          }
+        }
+
+        return lastUpperRowOpIndex;
+      }
+
+      function calculateNegativeNumbers() {
+        console.log("entry is a equal sign and lower row has a minus");
+        const lastUpperRowOpIndex = getLastUpperRowOpIndex();
+
+        // Set upperRow.value to lowerRow.value and then add the part of upperRow.value starting from the last operator
+        if (lastUpperRowOpIndex !== -1) {
+          lowerRow.value = lowerRow.value.replace(/=/g, "");
+          console.log("if condition true");
+          upperRow.value =
+            lowerRow.value + upperRow.value.slice(lastUpperRowOpIndex);
+          upperRow.value = upperRow.value.replace(lastUpperChar, "");
+          replaceFromNonEval();
+          lowerRow.value = eval(upperRow.value);
+          upperRow.value += "=";
+          replaceToNonEval();
+        } else {
+          // If no operator is found, append lowerRow.value to the entire upperRow.value
+          upperRow.value = lowerRow.value + upperRow.value;
+        }
+      }
+
+      function evaluateEntry() {
+        if (isOp(entry)) {
+          evaluateOpEntry();
+        } else if (isNumeric(entry)) {
+          evaluateNumericEntry();
+        } else if (entry === "C") {
+          clearScreen();
+        } else if (entry === "CE") {
+          lowerRow.value = "0";
+        } else if (entry === "=") {
+          evaluateEquals();
+        } else {
+          // number was pressed
+        }
+      }
+
+      function calculateConsecutiveEquals() {
+        let lastUpperRowOpIndex = getLastUpperRowOpIndex();
+        lowerRow.value = lowerRow.value.replace(entry, "");
+        // Remove everything up to the last operator
+        upperRow.value = upperRow.value.slice(lastUpperRowOpIndex);
+        upperRow.value = upperRow.value.replace(upperRow.value.slice(-1), "");
+        upperRow.value = lowerRow.value + upperRow.value;
+        replaceFromNonEval();
+        lowerRow.value = eval(upperRow.value);
+        replaceToNonEval();
+        upperRow.value += entry;
+      }
+
+      function calculateEqualsWithUpperRow() {
+        lowerRow.value = lowerRow.value.replace(entry, "");
+        upperRow.value += lowerRow.value;
+        replaceFromNonEval();
+        lowerRow.value = eval(upperRow.value);
+        upperRow.value += "=";
+        replaceToNonEval();
+      }
+
+      function evaluateNumericEntry() {
+        if (isOp(lastEntry)) {
+          lowerRow.value = entry;
+          console.log("this is a num and last entry was a operator");
+        } else {
+          if (
+            lowerRow.value === "0" &&
+            isNumOrOp(entry) &&
+            entry !== backBtn.textContent
+          ) {
+            lowerRow.value = entry;
+          } else {
+            lowerRow.value += entry;
+          }
+        }
+      }
+
+      function evaluateOpEntry() {
+        if (isOp(lastEntry)) {
+          upperRow.value = upperRow.value.replace(lastUpperChar, entry);
+          console.log("lastUpperChar", lastUpperChar);
+        } else if (lastEntry === "=") {
+          //alert('=')
+        } else {
+          if (isOp(lastUpperChar)) {
+            console.log(
+              "upper row has a op and last entry was a number and this entrty is a op"
+            );
+            upperRow.value += lowerRow.value;
+            replaceFromNonEval();
+            lowerRow.value = eval(upperRow.value);
+            replaceToNonEval();
+            upperRow.value = lowerRow.value + entry;
+          } else {
+            // entry is a op and last entry was a number and lastupperchar was not a op or is empty
+            upperRow.value += lowerRow.value + entry;
+            console.log(
+              "entry is a op and last entry was a number and last charchter of upper row was not a op or is empty"
+            );
+          }
+        }
+      }
+
+      function evaluateEquals() {
+        if (upperRow.value) {
+          
+          if (lastUpperChar === "=") {
+            //alert(4)
+            calculateConsecutiveEquals();
+           // calculateNegativeNumbers();
+          } else {
+            calculateEqualsWithUpperRow();
+          }
+        } else {
+          upperRow.value = lowerRow.value + entry;
+        }
+      }
+
+      const performBackspace = () => {
+        if (lowerRow.value.length <= 1) {
+          console.log("last number");
+          lowerRow.value = "0";
+        } else if (lowerRow.value.length >= 2) {
+          console.log("lower row has more then 1 number");
+          lowerRow.value = lowerRow.value.slice(0, -1);
+        }
+      };
+
+      backBtn.addEventListener("click", function () {
+        performBackspace();
+      });
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          entry = btn.textContent;
+          lastUpperChar = upperRow.value.slice(-1);
+          evaluateEntry();
+          lastEntry = entry;
+        });
+      });
     </script>
   </body>
 </html>
