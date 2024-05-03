@@ -138,6 +138,7 @@
     <script>
       const buttons = document.querySelectorAll(".btn");
       const upperRow = document.getElementById("upper-row");
+      let upValue = upperRow.value;
       const lowerRow = document.getElementById("lower-row");
       const backBtn = document.getElementById("backBtn");
       let lastEntry = "0";
@@ -146,6 +147,8 @@
 
       upperRow.value = "";
       lowerRow.value = "0";
+
+      let upRow = upperRow.value; //primitive
 
       const isOp = (character) =>
         ["+", "-", "x", "\u00F7", "&divide;", "÷", "%"].includes(character);
@@ -266,11 +269,14 @@
       }
 
       function evaluateOpEntry() {
-        if (isOp(lastEntry)) {
+       
+        if (entry === "%"){
+          evaluatePercentageOperator();
+        }else if (isOp(lastEntry)) {
           upperRow.value = upperRow.value.replace(lastUpperChar, entry);
           console.log("lastUpperChar", lastUpperChar);
         } else if (lastEntry === "=") {
-          //alert('=')
+          upperRow.value = lowerRow.value + entry;
         } else {
           if (isOp(lastUpperChar)) {
             console.log(
@@ -289,6 +295,14 @@
             );
           }
         }
+      }
+
+      function evaluatePercentageOperator(){
+        if (!upperRow.value){
+          upperRow.value = 0;
+          lowerRow.value = 0;
+        }
+
       }
 
       function evaluateEquals() {
